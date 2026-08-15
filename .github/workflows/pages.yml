@@ -33,6 +33,13 @@ jobs:
       - name: Build site with bank details from environment secrets
         env:
           TAKENOS_NAME: ${{ secrets.TAKENOS_NAME }}
+          TAKENOS_GIVEN_NAMES: ${{ secrets.TAKENOS_GIVEN_NAMES }}
+          TAKENOS_LAST_NAME: ${{ secrets.TAKENOS_LAST_NAME }}
+          TAKENOS_BENEFICIARY_COUNTRY: ${{ secrets.TAKENOS_BENEFICIARY_COUNTRY }}
+          TAKENOS_BENEFICIARY_STATE: ${{ secrets.TAKENOS_BENEFICIARY_STATE }}
+          TAKENOS_BENEFICIARY_CITY: ${{ secrets.TAKENOS_BENEFICIARY_CITY }}
+          TAKENOS_BENEFICIARY_POSTAL_CODE: ${{ secrets.TAKENOS_BENEFICIARY_POSTAL_CODE }}
+          TAKENOS_BENEFICIARY_ADDRESS: ${{ secrets.TAKENOS_BENEFICIARY_ADDRESS }}
           TAKENOS_ACH_ACCOUNT: ${{ secrets.TAKENOS_ACH_ACCOUNT }}
           TAKENOS_ACH_ROUTING: ${{ secrets.TAKENOS_ACH_ROUTING }}
           TAKENOS_ACH_ACCOUNT_TYPE: ${{ secrets.TAKENOS_ACH_ACCOUNT_TYPE }}
