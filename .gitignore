@@ -1,0 +1,17 @@
+# Generated site. It may contain injected banking details after a local build.
+dist/
+
+# Local secrets and environment files.
+.env
+.env.*
+!.env.example
+
+# Python-generated files.
+__pycache__/
+*.py[cod]
+
+# Common editor / OS noise.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
