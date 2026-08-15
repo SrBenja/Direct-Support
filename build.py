@@ -14,6 +14,13 @@ TEMPLATE = SITE / "index.template.html"
 
 PLACEHOLDERS = {
     "__TAKENOS_NAME__": "TAKENOS_NAME",
+    "__TAKENOS_GIVEN_NAMES__": "TAKENOS_GIVEN_NAMES",
+    "__TAKENOS_LAST_NAME__": "TAKENOS_LAST_NAME",
+    "__TAKENOS_BENEFICIARY_COUNTRY__": "TAKENOS_BENEFICIARY_COUNTRY",
+    "__TAKENOS_BENEFICIARY_STATE__": "TAKENOS_BENEFICIARY_STATE",
+    "__TAKENOS_BENEFICIARY_CITY__": "TAKENOS_BENEFICIARY_CITY",
+    "__TAKENOS_BENEFICIARY_POSTAL_CODE__": "TAKENOS_BENEFICIARY_POSTAL_CODE",
+    "__TAKENOS_BENEFICIARY_ADDRESS__": "TAKENOS_BENEFICIARY_ADDRESS",
     "__TAKENOS_ACH_ACCOUNT__": "TAKENOS_ACH_ACCOUNT",
     "__TAKENOS_ACH_ROUTING__": "TAKENOS_ACH_ROUTING",
     "__TAKENOS_ACH_ACCOUNT_TYPE__": "TAKENOS_ACH_ACCOUNT_TYPE",
@@ -26,6 +33,14 @@ PLACEHOLDERS = {
 }
 
 SENSITIVE_SOURCE_CHECKS = (
+    "TAKENOS_NAME",
+    "TAKENOS_GIVEN_NAMES",
+    "TAKENOS_LAST_NAME",
+    "TAKENOS_BENEFICIARY_COUNTRY",
+    "TAKENOS_BENEFICIARY_STATE",
+    "TAKENOS_BENEFICIARY_CITY",
+    "TAKENOS_BENEFICIARY_POSTAL_CODE",
+    "TAKENOS_BENEFICIARY_ADDRESS",
     "TAKENOS_ACH_ACCOUNT",
     "TAKENOS_ACH_ROUTING",
     "TAKENOS_SEPA_IBAN",
@@ -83,6 +98,17 @@ def validate_bic(value: str) -> str:
     return value
 
 
+def validate_postal_code(value: str) -> str:
+    value = compact_text(value, "TAKENOS_BENEFICIARY_POSTAL_CODE", max_length=16)
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9 .-]{1,15}", value):
+        fail("TAKENOS_BENEFICIARY_POSTAL_CODE has an invalid format.")
+    return value
+
+
+def normalize_person_name(value: str) -> str:
+    return " ".join(value.split()).casefold()
+
+
 def collect_values() -> dict[str, str]:
     missing = [name for name in PLACEHOLDERS.values() if not os.environ.get(name, "").strip()]
     if missing:
@@ -93,6 +119,13 @@ def collect_values() -> dict[str, str]:
 
     values = {
         "TAKENOS_NAME": compact_text(os.environ["TAKENOS_NAME"], "TAKENOS_NAME", max_length=120),
+        "TAKENOS_GIVEN_NAMES": compact_text(os.environ["TAKENOS_GIVEN_NAMES"], "TAKENOS_GIVEN_NAMES", max_length=100),
+        "TAKENOS_LAST_NAME": compact_text(os.environ["TAKENOS_LAST_NAME"], "TAKENOS_LAST_NAME", max_length=80),
+        "TAKENOS_BENEFICIARY_COUNTRY": compact_text(os.environ["TAKENOS_BENEFICIARY_COUNTRY"], "TAKENOS_BENEFICIARY_COUNTRY", max_length=80),
+        "TAKENOS_BENEFICIARY_STATE": compact_text(os.environ["TAKENOS_BENEFICIARY_STATE"], "TAKENOS_BENEFICIARY_STATE", max_length=100),
+        "TAKENOS_BENEFICIARY_CITY": compact_text(os.environ["TAKENOS_BENEFICIARY_CITY"], "TAKENOS_BENEFICIARY_CITY", max_length=100),
+        "TAKENOS_BENEFICIARY_POSTAL_CODE": validate_postal_code(os.environ["TAKENOS_BENEFICIARY_POSTAL_CODE"]),
+        "TAKENOS_BENEFICIARY_ADDRESS": compact_text(os.environ["TAKENOS_BENEFICIARY_ADDRESS"], "TAKENOS_BENEFICIARY_ADDRESS", max_length=180),
         "TAKENOS_ACH_ACCOUNT": digits(os.environ["TAKENOS_ACH_ACCOUNT"], "TAKENOS_ACH_ACCOUNT", minimum=4, maximum=20),
         "TAKENOS_ACH_ROUTING": validate_aba_routing(os.environ["TAKENOS_ACH_ROUTING"]),
         "TAKENOS_ACH_ACCOUNT_TYPE": compact_text(os.environ["TAKENOS_ACH_ACCOUNT_TYPE"], "TAKENOS_ACH_ACCOUNT_TYPE", max_length=60),
@@ -103,6 +136,15 @@ def collect_values() -> dict[str, str]:
         "TAKENOS_SEPA_BANK": compact_text(os.environ["TAKENOS_SEPA_BANK"], "TAKENOS_SEPA_BANK", max_length=140),
         "TAKENOS_SEPA_BANK_ADDRESS": compact_text(os.environ["TAKENOS_SEPA_BANK_ADDRESS"], "TAKENOS_SEPA_BANK_ADDRESS"),
     }
+
+    expected_name = f'{values["TAKENOS_GIVEN_NAMES"]} {values["TAKENOS_LAST_NAME"]}'
+    if normalize_person_name(values["TAKENOS_NAME"]) != normalize_person_name(expected_name):
+        fail("TAKENOS_NAME does not match TAKENOS_GIVEN_NAMES + TAKENOS_LAST_NAME.")
+
+    account_type = values["TAKENOS_ACH_ACCOUNT_TYPE"].casefold()
+    if "checking" not in account_type or "saving" in account_type:
+        fail("TAKENOS_ACH_ACCOUNT_TYPE must describe a Checking account, not Savings.")
+
     return values
 
 

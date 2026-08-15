@@ -26,6 +26,7 @@
     <section class="notice" aria-label="Important transfer information">
       <strong>Please enter the beneficiary and bank details exactly as shown.</strong>
       <span>Your own bank or payment provider may apply its own transfer fees, limits, or processing times.</span>
+      <span>If any field is rejected, unavailable, or looks inconsistent, please contact me before sending the transfer.</span>
     </section>
 
     <section class="grid" aria-label="Direct bank transfer methods">
@@ -59,6 +60,7 @@
             <dt>Account type</dt>
             <dd><span id="ach-type" data-label="Account type">__TAKENOS_ACH_ACCOUNT_TYPE__</span><button type="button" data-copy="ach-type" aria-label="Copy ACH account type">Copy</button></dd>
           </div>
+          <p class="choice-hint"><strong>If the form asks Checking or Savings:</strong> choose <strong>Checking / Current account</strong>, not Savings.</p>
           <div class="detail">
             <dt>Bank name</dt>
             <dd><span id="ach-bank" data-label="Bank name">__TAKENOS_ACH_BANK__</span><button type="button" data-copy="ach-bank" aria-label="Copy ACH bank name">Copy</button></dd>
@@ -68,6 +70,47 @@
             <dd><span id="ach-address" data-label="Bank address">__TAKENOS_ACH_BANK_ADDRESS__</span><button type="button" data-copy="ach-address" aria-label="Copy ACH bank address">Copy</button></dd>
           </div>
         </dl>
+
+        <details class="extra-details">
+          <summary>Additional beneficiary details (only if your bank asks)</summary>
+          <div class="extra-details-body">
+            <p class="extra-intro">
+              Some banks and payment services ask for the recipient's name in separate fields or for the beneficiary address.
+              These are <strong>beneficiary details</strong>, not the bank address shown above.
+            </p>
+            <dl class="details" data-group="ach">
+              <div class="detail">
+                <dt>First / Given name(s)</dt>
+                <dd><span id="ach-given-names" data-label="First / Given name(s)">__TAKENOS_GIVEN_NAMES__</span><button type="button" data-copy="ach-given-names" aria-label="Copy beneficiary given names">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Last / Surname</dt>
+                <dd><span id="ach-last-name" data-label="Last / Surname">__TAKENOS_LAST_NAME__</span><button type="button" data-copy="ach-last-name" aria-label="Copy beneficiary last name">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary country</dt>
+                <dd><span id="ach-beneficiary-country" data-label="Beneficiary country">__TAKENOS_BENEFICIARY_COUNTRY__</span><button type="button" data-copy="ach-beneficiary-country" aria-label="Copy beneficiary country">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary state / province</dt>
+                <dd><span id="ach-beneficiary-state" data-label="Beneficiary state / province">__TAKENOS_BENEFICIARY_STATE__</span><button type="button" data-copy="ach-beneficiary-state" aria-label="Copy beneficiary state or province">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary city</dt>
+                <dd><span id="ach-beneficiary-city" data-label="Beneficiary city">__TAKENOS_BENEFICIARY_CITY__</span><button type="button" data-copy="ach-beneficiary-city" aria-label="Copy beneficiary city">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary postal code</dt>
+                <dd><span id="ach-beneficiary-postal" data-label="Beneficiary postal code">__TAKENOS_BENEFICIARY_POSTAL_CODE__</span><button type="button" data-copy="ach-beneficiary-postal" aria-label="Copy beneficiary postal code">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary address</dt>
+                <dd><span id="ach-beneficiary-address" data-label="Beneficiary address">__TAKENOS_BENEFICIARY_ADDRESS__</span><button type="button" data-copy="ach-beneficiary-address" aria-label="Copy beneficiary address">Copy</button></dd>
+              </div>
+            </dl>
+            <p class="extra-warning"><strong>Important:</strong> do not use the bank address as the beneficiary address. If your provider rejects any of these fields, please contact me before sending.</p>
+          </div>
+        </details>
 
         <button class="copy-all" type="button" data-copy-group="ach">Copy all ACH details</button>
         <p class="footnote">Takenos may display the bank name and address together; they are separated here only for easier form entry.</p>
@@ -108,6 +151,47 @@
             <dd><span id="sepa-address" data-label="Bank address">__TAKENOS_SEPA_BANK_ADDRESS__</span><button type="button" data-copy="sepa-address" aria-label="Copy SEPA bank address">Copy</button></dd>
           </div>
         </dl>
+
+        <details class="extra-details">
+          <summary>Additional beneficiary details (only if your bank asks)</summary>
+          <div class="extra-details-body">
+            <p class="extra-intro">
+              Some SEPA providers may request the beneficiary's name in separate fields or the beneficiary address.
+              These are <strong>beneficiary details</strong>, not the bank address shown above.
+            </p>
+            <dl class="details" data-group="sepa">
+              <div class="detail">
+                <dt>First / Given name(s)</dt>
+                <dd><span id="sepa-given-names" data-label="First / Given name(s)">__TAKENOS_GIVEN_NAMES__</span><button type="button" data-copy="sepa-given-names" aria-label="Copy beneficiary given names">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Last / Surname</dt>
+                <dd><span id="sepa-last-name" data-label="Last / Surname">__TAKENOS_LAST_NAME__</span><button type="button" data-copy="sepa-last-name" aria-label="Copy beneficiary last name">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary country</dt>
+                <dd><span id="sepa-beneficiary-country" data-label="Beneficiary country">__TAKENOS_BENEFICIARY_COUNTRY__</span><button type="button" data-copy="sepa-beneficiary-country" aria-label="Copy beneficiary country">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary state / province</dt>
+                <dd><span id="sepa-beneficiary-state" data-label="Beneficiary state / province">__TAKENOS_BENEFICIARY_STATE__</span><button type="button" data-copy="sepa-beneficiary-state" aria-label="Copy beneficiary state or province">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary city</dt>
+                <dd><span id="sepa-beneficiary-city" data-label="Beneficiary city">__TAKENOS_BENEFICIARY_CITY__</span><button type="button" data-copy="sepa-beneficiary-city" aria-label="Copy beneficiary city">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary postal code</dt>
+                <dd><span id="sepa-beneficiary-postal" data-label="Beneficiary postal code">__TAKENOS_BENEFICIARY_POSTAL_CODE__</span><button type="button" data-copy="sepa-beneficiary-postal" aria-label="Copy beneficiary postal code">Copy</button></dd>
+              </div>
+              <div class="detail">
+                <dt>Beneficiary address</dt>
+                <dd><span id="sepa-beneficiary-address" data-label="Beneficiary address">__TAKENOS_BENEFICIARY_ADDRESS__</span><button type="button" data-copy="sepa-beneficiary-address" aria-label="Copy beneficiary address">Copy</button></dd>
+              </div>
+            </dl>
+            <p class="extra-warning"><strong>Important:</strong> do not use the bank address as the beneficiary address. If your provider rejects any of these fields, please contact me before sending.</p>
+          </div>
+        </details>
 
         <button class="copy-all" type="button" data-copy-group="sepa">Copy all SEPA details</button>
         <p class="footnote">Takenos may display the bank name and address together; they are separated here only for easier form entry.</p>

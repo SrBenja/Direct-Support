@@ -59,11 +59,13 @@
   document.querySelectorAll("[data-copy-group]").forEach((button) => {
     button.addEventListener("click", async () => {
       const groupName = button.dataset.copyGroup;
-      const group = document.querySelector(`[data-group="${groupName}"]`);
-      if (!group) return;
+      const groups = Array.from(document.querySelectorAll(`[data-group="${groupName}"]`));
+      if (groups.length === 0) return;
 
-      const lines = Array.from(group.querySelectorAll("[data-label]")).map((item) => {
-        return `${item.dataset.label}: ${item.textContent.trim()}`;
+      const lines = groups.flatMap((group) => {
+        return Array.from(group.querySelectorAll("[data-label]")).map((item) => {
+          return `${item.dataset.label}: ${item.textContent.trim()}`;
+        });
       });
 
       const copied = await copyText(lines.join("\n"));
