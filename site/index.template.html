@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Direct Support</title>
+  <meta name="description" content="Direct bank transfer options for voluntary support.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="heart" aria-hidden="true">♥</div>
+      <p class="eyebrow">DIRECT SUPPORT</p>
+      <h1>Thank you for supporting my work.</h1>
+      <p class="intro">If you prefer a direct bank transfer, choose the region that matches your bank. These are voluntary contributions and no purchase is required.</p>
+    </section>
+
+    <section class="notice" aria-label="Important transfer information">
+      <strong>Please use the details exactly as shown.</strong>
+      <span>Your own bank or payment provider may charge a transfer fee even when the receiving method does not.</span>
+    </section>
+
+    <section class="grid">
+      <article class="card card-us">
+        <div class="card-top"><div><span class="region">🇺🇸 United States</span><h2>ACH Bank Transfer</h2></div><span class="badge">USD</span></div>
+        <p class="card-copy">For transfers from a U.S. bank account. Please send as <strong>ACH</strong>, not SWIFT or international wire.</p>
+        <dl class="details">
+          <div class="detail"><dt>Beneficiary</dt><dd><span id="ach-beneficiary">__TAKENOS_NAME__</span><button type="button" data-copy="ach-beneficiary">Copy</button></dd></div>
+          <div class="detail"><dt>Account number</dt><dd><span id="ach-account">__TAKENOS_ACH_ACCOUNT__</span><button type="button" data-copy="ach-account">Copy</button></dd></div>
+          <div class="detail"><dt>Routing number</dt><dd><span id="ach-routing">__TAKENOS_ACH_ROUTING__</span><button type="button" data-copy="ach-routing">Copy</button></dd></div>
+          <div class="detail"><dt>Account type</dt><dd><span id="ach-type">__TAKENOS_ACH_ACCOUNT_TYPE__</span><button type="button" data-copy="ach-type">Copy</button></dd></div>
+          <div class="detail"><dt>Bank</dt><dd><span id="ach-bank">__TAKENOS_ACH_BANK__</span><button type="button" data-copy="ach-bank">Copy</button></dd></div>
+          <div class="detail"><dt>Bank address</dt><dd><span id="ach-address">__TAKENOS_ACH_BANK_ADDRESS__</span><button type="button" data-copy="ach-address">Copy</button></dd></div>
+        </dl>
+        <p class="footnote">Small contributions are supported by my receiving account; your sending bank may apply its own limits.</p>
+      </article>
+
+      <article class="card card-eu">
+        <div class="card-top"><div><span class="region">🇪🇺 Europe</span><h2>SEPA Bank Transfer</h2></div><span class="badge">EUR</span></div>
+        <p class="card-copy">For euro transfers from a SEPA-compatible account. Send the transfer in <strong>EUR</strong> and enter the beneficiary exactly as shown.</p>
+        <dl class="details">
+          <div class="detail"><dt>Beneficiary</dt><dd><span id="sepa-beneficiary">__TAKENOS_NAME__</span><button type="button" data-copy="sepa-beneficiary">Copy</button></dd></div>
+          <div class="detail"><dt>IBAN</dt><dd><span id="sepa-iban">__TAKENOS_SEPA_IBAN__</span><button type="button" data-copy="sepa-iban">Copy</button></dd></div>
+          <div class="detail"><dt>BIC / SWIFT</dt><dd><span id="sepa-bic">__TAKENOS_SEPA_BIC__</span><button type="button" data-copy="sepa-bic">Copy</button></dd></div>
+          <div class="detail"><dt>Bank</dt><dd><span id="sepa-bank">__TAKENOS_SEPA_BANK__</span><button type="button" data-copy="sepa-bank">Copy</button></dd></div>
+          <div class="detail"><dt>Bank address</dt><dd><span id="sepa-address">__TAKENOS_SEPA_BANK_ADDRESS__</span><button type="button" data-copy="sepa-address">Copy</button></dd></div>
+        </dl>
+        <p class="footnote">Use SEPA for this option. Exchange rates, limits, and processing times may change over time.</p>
+      </article>
+    </section>
+
+    <footer>
+      <p>Thank you. Truly. <span aria-hidden="true">♥</span></p>
+      <p class="privacy">This page intentionally uses no analytics, advertising scripts, external fonts, or third-party trackers.</p>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+  <script src="app.js"></script>
+</body>
+</html>
