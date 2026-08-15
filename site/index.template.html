@@ -3,62 +3,124 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Direct Support</title>
   <meta name="description" content="Direct bank transfer options for voluntary support.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="shell">
-    <section class="hero">
+    <section class="hero" aria-labelledby="page-title">
       <div class="heart" aria-hidden="true">♥</div>
       <p class="eyebrow">DIRECT SUPPORT</p>
-      <h1>Thank you for supporting my work.</h1>
-      <p class="intro">If you prefer a direct bank transfer, choose the region that matches your bank. These are voluntary contributions and no purchase is required.</p>
+      <h1 id="page-title">Thank you for supporting my work.</h1>
+      <p class="intro">
+        If you prefer a direct bank transfer, choose the region that matches your bank.
+        Every contribution is completely voluntary and sincerely appreciated.
+      </p>
     </section>
 
     <section class="notice" aria-label="Important transfer information">
-      <strong>Please use the details exactly as shown.</strong>
-      <span>Your own bank or payment provider may charge a transfer fee even when the receiving method does not.</span>
+      <strong>Please enter the beneficiary and bank details exactly as shown.</strong>
+      <span>Your own bank or payment provider may apply its own transfer fees, limits, or processing times.</span>
     </section>
 
-    <section class="grid">
-      <article class="card card-us">
-        <div class="card-top"><div><span class="region">🇺🇸 United States</span><h2>ACH Bank Transfer</h2></div><span class="badge">USD</span></div>
-        <p class="card-copy">For transfers from a U.S. bank account. Please send as <strong>ACH</strong>, not SWIFT or international wire.</p>
-        <dl class="details">
-          <div class="detail"><dt>Beneficiary</dt><dd><span id="ach-beneficiary">__TAKENOS_NAME__</span><button type="button" data-copy="ach-beneficiary">Copy</button></dd></div>
-          <div class="detail"><dt>Account number</dt><dd><span id="ach-account">__TAKENOS_ACH_ACCOUNT__</span><button type="button" data-copy="ach-account">Copy</button></dd></div>
-          <div class="detail"><dt>Routing number</dt><dd><span id="ach-routing">__TAKENOS_ACH_ROUTING__</span><button type="button" data-copy="ach-routing">Copy</button></dd></div>
-          <div class="detail"><dt>Account type</dt><dd><span id="ach-type">__TAKENOS_ACH_ACCOUNT_TYPE__</span><button type="button" data-copy="ach-type">Copy</button></dd></div>
-          <div class="detail"><dt>Bank</dt><dd><span id="ach-bank">__TAKENOS_ACH_BANK__</span><button type="button" data-copy="ach-bank">Copy</button></dd></div>
-          <div class="detail"><dt>Bank address</dt><dd><span id="ach-address">__TAKENOS_ACH_BANK_ADDRESS__</span><button type="button" data-copy="ach-address">Copy</button></dd></div>
+    <section class="grid" aria-label="Direct bank transfer methods">
+      <article class="card card-us" aria-labelledby="ach-title">
+        <div class="card-top">
+          <div>
+            <span class="region">🇺🇸 United States</span>
+            <h2 id="ach-title">ACH Bank Transfer</h2>
+          </div>
+          <span class="badge">USD</span>
+        </div>
+
+        <p class="card-copy">
+          For transfers from a U.S. bank account. Please send using <strong>ACH</strong>, not SWIFT or an international wire.
+        </p>
+
+        <dl class="details" data-group="ach">
+          <div class="detail">
+            <dt>Beneficiary</dt>
+            <dd><span id="ach-beneficiary" data-label="Beneficiary">__TAKENOS_NAME__</span><button type="button" data-copy="ach-beneficiary" aria-label="Copy ACH beneficiary">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>Account number</dt>
+            <dd><span id="ach-account" data-label="Account number">__TAKENOS_ACH_ACCOUNT__</span><button type="button" data-copy="ach-account" aria-label="Copy ACH account number">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>Routing number</dt>
+            <dd><span id="ach-routing" data-label="Routing number">__TAKENOS_ACH_ROUTING__</span><button type="button" data-copy="ach-routing" aria-label="Copy ACH routing number">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>Account type</dt>
+            <dd><span id="ach-type" data-label="Account type">__TAKENOS_ACH_ACCOUNT_TYPE__</span><button type="button" data-copy="ach-type" aria-label="Copy ACH account type">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>Bank name</dt>
+            <dd><span id="ach-bank" data-label="Bank name">__TAKENOS_ACH_BANK__</span><button type="button" data-copy="ach-bank" aria-label="Copy ACH bank name">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>Bank address</dt>
+            <dd><span id="ach-address" data-label="Bank address">__TAKENOS_ACH_BANK_ADDRESS__</span><button type="button" data-copy="ach-address" aria-label="Copy ACH bank address">Copy</button></dd>
+          </div>
         </dl>
-        <p class="footnote">Small contributions are supported by my receiving account; your sending bank may apply its own limits.</p>
+
+        <button class="copy-all" type="button" data-copy-group="ach">Copy all ACH details</button>
+        <p class="footnote">Takenos may display the bank name and address together; they are separated here only for easier form entry.</p>
       </article>
 
-      <article class="card card-eu">
-        <div class="card-top"><div><span class="region">🇪🇺 Europe</span><h2>SEPA Bank Transfer</h2></div><span class="badge">EUR</span></div>
-        <p class="card-copy">For euro transfers from a SEPA-compatible account. Send the transfer in <strong>EUR</strong> and enter the beneficiary exactly as shown.</p>
-        <dl class="details">
-          <div class="detail"><dt>Beneficiary</dt><dd><span id="sepa-beneficiary">__TAKENOS_NAME__</span><button type="button" data-copy="sepa-beneficiary">Copy</button></dd></div>
-          <div class="detail"><dt>IBAN</dt><dd><span id="sepa-iban">__TAKENOS_SEPA_IBAN__</span><button type="button" data-copy="sepa-iban">Copy</button></dd></div>
-          <div class="detail"><dt>BIC / SWIFT</dt><dd><span id="sepa-bic">__TAKENOS_SEPA_BIC__</span><button type="button" data-copy="sepa-bic">Copy</button></dd></div>
-          <div class="detail"><dt>Bank</dt><dd><span id="sepa-bank">__TAKENOS_SEPA_BANK__</span><button type="button" data-copy="sepa-bank">Copy</button></dd></div>
-          <div class="detail"><dt>Bank address</dt><dd><span id="sepa-address">__TAKENOS_SEPA_BANK_ADDRESS__</span><button type="button" data-copy="sepa-address">Copy</button></dd></div>
+      <article class="card card-eu" aria-labelledby="sepa-title">
+        <div class="card-top">
+          <div>
+            <span class="region">🇪🇺 Europe</span>
+            <h2 id="sepa-title">SEPA Bank Transfer</h2>
+          </div>
+          <span class="badge">EUR</span>
+        </div>
+
+        <p class="card-copy">
+          For euro transfers from a SEPA-compatible account. Send the transfer in <strong>EUR</strong> and enter the beneficiary exactly as shown.
+        </p>
+
+        <dl class="details" data-group="sepa">
+          <div class="detail">
+            <dt>Beneficiary</dt>
+            <dd><span id="sepa-beneficiary" data-label="Beneficiary">__TAKENOS_NAME__</span><button type="button" data-copy="sepa-beneficiary" aria-label="Copy SEPA beneficiary">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>IBAN</dt>
+            <dd><span id="sepa-iban" data-label="IBAN">__TAKENOS_SEPA_IBAN__</span><button type="button" data-copy="sepa-iban" aria-label="Copy SEPA IBAN">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>BIC / SWIFT</dt>
+            <dd><span id="sepa-bic" data-label="BIC / SWIFT">__TAKENOS_SEPA_BIC__</span><button type="button" data-copy="sepa-bic" aria-label="Copy SEPA BIC or SWIFT code">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>Bank name</dt>
+            <dd><span id="sepa-bank" data-label="Bank name">__TAKENOS_SEPA_BANK__</span><button type="button" data-copy="sepa-bank" aria-label="Copy SEPA bank name">Copy</button></dd>
+          </div>
+          <div class="detail">
+            <dt>Bank address</dt>
+            <dd><span id="sepa-address" data-label="Bank address">__TAKENOS_SEPA_BANK_ADDRESS__</span><button type="button" data-copy="sepa-address" aria-label="Copy SEPA bank address">Copy</button></dd>
+          </div>
         </dl>
-        <p class="footnote">Use SEPA for this option. Exchange rates, limits, and processing times may change over time.</p>
+
+        <button class="copy-all" type="button" data-copy-group="sepa">Copy all SEPA details</button>
+        <p class="footnote">Takenos may display the bank name and address together; they are separated here only for easier form entry.</p>
       </article>
     </section>
 
     <footer>
       <p>Thank you. Truly. <span aria-hidden="true">♥</span></p>
-      <p class="privacy">This page intentionally uses no analytics, advertising scripts, external fonts, or third-party trackers.</p>
+      <p class="privacy">This page includes no analytics or advertising scripts, external fonts, or third-party trackers.</p>
     </footer>
   </main>
-  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">Copied</div>
   <script src="app.js"></script>
 </body>
 </html>
