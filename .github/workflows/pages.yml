@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: "3.13"
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Build site with bank details from repository secrets
         env:
           TAKENOS_NAME: ${{ secrets.TAKENOS_NAME }}
@@ -38,7 +38,7 @@ jobs:
           TAKENOS_SEPA_BANK_ADDRESS: ${{ secrets.TAKENOS_SEPA_BANK_ADDRESS }}
         run: python build.py
       - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -54,4 +54,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
